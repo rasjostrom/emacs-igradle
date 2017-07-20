@@ -1,5 +1,6 @@
 * igradle-mode
 An emacs minor mode for dealing with gradle projects interactively.
+
 ** Features
 *** Interactive Menu
     *igradle* implements a [[https://github.com/abo-abo/hydra][hydra]] for interacting with gradle. Using this, it's possible to
@@ -19,46 +20,48 @@ An emacs minor mode for dealing with gradle projects interactively.
      allows for scrolling up/down so far.
 
      [[./screenshots/igradle-describe.png]]
-* Installation
-Place ~igradle-mode.el~ anywhere in your load-path and ~(require 'igradle-mode)~.
 
-To activate igradle, issue ~M-x RET igradle-mode~ or put ~(igradle-mode 1)~ somewhere in
-your emacs config.
+*** Quick Tasks
 
-* Keymap
+    | Prefix    | Key | Action                 |
+    |-----------+-----+------------------------|
+    | ~C-c C-g~ | e   | ~igradle-execute~      |
+    | ~C-c C-g~ | c   | ~igradle-clean~        |
+    | ~C-c C-g~ | b   | ~igradle-build~        |
+    | ~C-c C-g~ | j   | ~igradle-jar~          |
+    | ~C-c C-g~ | t   | ~igradle-test~         |
+    | ~C-c C-g~ | s   | ~igradle-select-build~ |
+    | ~C-c C-c~ |     | ~igradle-menu~         |
 
-  | Prefix    | Key | Action                 |
-  |-----------+-----+------------------------|
-  | ~C-c C-g~ | e   | ~igradle-execute~      |
-  | ~C-c C-g~ | c   | ~igradle-clean~        |
-  | ~C-c C-g~ | b   | ~igradle-build~        |
-  | ~C-c C-g~ | j   | ~igradle-jar~          |
-  | ~C-c C-g~ | t   | ~igradle-test~         |
-  | ~C-c C-g~ | s   | ~igradle-select-build~ |
-  | ~C-c C-c~ |     | ~igradle-menu~         |
+*** Unbound Interactive Functions
+     These functions do not have a direct key binding, so must either be bound manually or
+     called using ~M-x~. They're all prefixed with ~igradle-~.
 
-* Unbound Interactives
-   These functions do not have a direct key binding, so must either be bound manually or
-   called using ~M-x~. They're all prefixed with ~igradle-~.
+**** execute
+     Prompt the user for tasks to run using the current target build file.
+**** menu
+     Opens an interactive hydra interface to gradle.
 
-** execute
-   Prompt the user for tasks to run using the current target build file.
-** menu
-   Opens an interactive hydra interface to gradle.
+**** list-tasks
+     Lists all gradle tasks available in the current target build.
 
-** list-tasks
-   Lists all gradle tasks available in the current target build.
+**** describe-task
+     Prompts for a gradle task and describes it using ~gradle help --task <NAME>~.
 
-** describe-task
-   Prompts for a gradle task and describes it using ~gradle help --task <NAME>~.
+**** describe-project
+     Describes the project using the project description (if available) of the current
+     target build.
 
-** describe-project
-   Describes the project using the project description (if available) of the current
-   target build.
+**** describe-build
+     Displays the currently selected target build file in the minibuffer.
 
-** describe-build
-   Displays the currently selected target build file in the minibuffer.
+**** set-build
+     Prompts the user to select a target gradle build file from a list of all discovered
+     build files.
 
-** set-build
-   Prompts the user to select a target gradle build file from a list of all discovered
-   build files.
+
+** Installation
+ Place ~igradle-mode.el~ anywhere in your load-path and ~(require 'igradle-mode)~.
+
+ To activate igradle, issue ~M-x RET igradle-mode~ or put ~(igradle-mode 1)~ somewhere in
+ your emacs config.
